@@ -3,7 +3,7 @@ const TOTAL_DOTS = 1000000;  // 1 million dots
 const DOTS_PER_FRAME = 10000; // Draw this many dots per frame
 const CANVAS_WIDTH = window.innerWidth;
 const CANVAS_HEIGHT = window.innerHeight;
-const DOT_SIZE = 1;          // Size of each dot
+const DOT_SIZE = 2;          // Size of each dot
 const USE_PATTERNS = true
 const USE_CUSTOM = !USE_PATTERNS
 const PATTERN_TYPE = 'beach'; // Options: 'spiral', 'wave', 'gradient', 'clusters'
@@ -22,7 +22,7 @@ function setup() {
   
   // Choose a pattern
   pattern = PATTERN_TYPE;
-  numColors = 5;
+  numColors = 4;
   colorMode = floor(random(numColors)); // 5 different color modes
   
   // Set pixel density to 1 for better performance
@@ -147,7 +147,7 @@ function draw() {
           
           // Set a fill color for the surf board (adjust as needed)
           // fill(255, 130, 255, 255);
-          getRandomColour([255, 130, 255, 255], [255, 255, 0, 255], 0.3)
+          getRandomColour([255, 130, 255, 255], [255, 0, 0, 255], 0.3)
       }
 
       else if (patch == 'board2') {
@@ -245,7 +245,7 @@ function draw() {
       // Set a fill color for the waves (adjust as needed)
       //White
       fill(255, 2, 255, 200 + random(55));
-      getRandomColour([255, 0, 255, 255], [255, 0, 0, 255], 1)
+      getRandomColour([255, 0, 255, 200], [255, 0, 0, 200], 1)
         
     }
 
@@ -312,11 +312,6 @@ function draw() {
           break;
         case 3: // Cool colors
           fill(random(50), 100 + random(50), 200 + random(55), 250);
-          break;
-        case 4: // Rainbow based on position
-          colorMode = HSB;
-          fill((x + y + frameCount) % 360, 100, 100, 0.5);
-          colorMode = RGB;
           break;
       }
   }
@@ -392,7 +387,7 @@ function keyPressed() {
     saveCount++;
     
     // Save the current canvas with timestamp and counters
-    saveCanvas(`progress/${saveCount}`, 'png');
+    // saveCanvas(`progress/${saveCount}`, 'png');
     
     // Store the updated counter in localStorage for persistence
     if (window.localStorage) {
@@ -404,7 +399,8 @@ function keyPressed() {
     // Reset
     background(10);
     dotsDrawn = 0;
-    colorMode = (colorMode + 1) % (numColors - 1); // Fixed to use 5 color modes
+    colorMode = floor(random(numColors)); // 5 different color modes
+    skipDefaultColors = false;
     console.log(`Pattern: ${pattern}, Color Mode: ${colorMode}`);
     loop();
 
