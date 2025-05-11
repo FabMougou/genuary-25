@@ -1,0 +1,6 @@
+#input-video {
+  position: absolute;
+  z-index: 0;
+  -webkit-transform: scaleX(-1) scale(1.6);
+  transform: scaleX(-1) scale(1.6);
+}
