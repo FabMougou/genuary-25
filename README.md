@@ -1,4 +1,6 @@
 # genuary-25
+https://genuary.art/prompts
+
 JAN. 1. (credit: Stranger in the Q)
 Vertical or horizontal lines only.
 
